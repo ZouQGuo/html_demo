@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace : 名称空间-->
+<mapper namespace="com.zouquanguo.mapper.ExamMapper">
+    <!--
+    数据库表的字段名称 和 实体类的属性名称 不一样 则不能自动封装数据
+            解决方法
+                    1  起别名 :对不一样的列名起别名 让别名和实体类的属性名一样（缺点：每次都要改）——》解缺点：sql片段(缺点不灵活)-》resultMap
+                    2  resultMap
+                                1 定义<resultMap> 标签
+                                2 在<select> 标签中，使用resultMap属性替换resultType属性
+    -->
+    
+    <!--SQL片段-->
+<!--    <sql id="exam_column">-->
+<!--        id,NAME as name ,chinese,math,english-->
+<!--    </sql>-->
+<!--    <select id="selectAll" resultType="com.zouquanguo.bean.Exam">-->
+<!--        select-->
+<!--            <include refid="exam_column"></include>-->
+<!--        from exam;-->
+<!--    </select>-->
+
+
+    <!--resultMap-->
+    <!--
+        id:唯一标识
+        type：映射的类型，支持别名
+    -->
+    <resultMap id="examResultMap" type="exam">
+        <!--
+            id : 完成主键字段的映射
+                column： 表的列名
+                property：实体类的属性名
+            result：完成一般字段的映射
+                column： 表的列名
+                property：实体类的属性名
+        -->
+        <result column="NAME" property="name"/>
+    </resultMap>
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into exam( NAME, chinese, math, english) VALUES
+        (#{name},#{chinese},#{math},#{english});
+
+    </insert>
+
+
+    <select id="selectAll" resultMap="examResultMap">
+        select * from exam;
+    </select>
+
+
+
+    <select id="selectById" resultMap="examResultMap">
+        select * from exam where id= #{id};
+    </select>
+
+    <!--条件查询-->
+    <select id="selectByCondition" resultMap="examResultMap">
+        select * from exam
+        where NAME like #{name}
+        and chinese = #{chinese}
+    </select>
+    <select id="selectByCondition1" resultMap="examResultMap">
+        select * from exam
+        where NAME like #{name}
+          and chinese = #{chinese}
+    </select>
+   <!-- <select id="selectByCondition2"  resultMap="examResultMap">
+        select * from exam
+        where NAME like #{name}
+          and chinese = #{chinese}
+    </select>-->
+
+    <!--动态SQL-->
+    <select id="selectByCondition2"  resultMap="examResultMap">
+        select * from exam
+        <where>
+            <if test="name!=null and name!=''">
+                and NAME like #{name}
+            </if>
+            <if test="chinese !=null">
+                and chinese = #{chinese}
+            </if>
+        </where>
+
+    </select>
+<!--    单条件动态查询-->
+    <select id="selectBySingle" resultMap="examResultMap">
+        select * from exam
+        <where>
+            <choose>
+                <when test="name">
+                    name like #{name}
+                </when>
+                <when test="chinese">
+                    chinese = #{chinese}
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <update id="update">
+        update exam set NAME=#{name},chinese=#{chinese},math = #{math},english=#{english}
+        where id=#{id};
+    </update>
+    <update id="updateById">
+        update exam 
+        <set>
+           <if test="name != null and name != ''">
+               NAME=#{name},
+           </if>
+            <if test="chinese != null and chinese != ''">
+                chinese=#{chinese},
+            </if>
+            <if test="math != null and math!=''">
+                math=#{math},
+            </if>
+            <if test="english!=null and english!=''">
+                english=#{english},
+            </if>
+        </set>
+            where id = #{id};
+    </update>
+
+    <delete id="deleteByIds">
+        delete from exam where id
+        in (
+        <foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>)
+    </delete>
+
+</mapper>

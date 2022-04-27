@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" method="post">
+    <label for="username">用户名</label>
+    <input type="text" name="username" id="username"><br>
+    <label for="password">密码：</label>
+    <input type="password" name="password" id="password"><br>
+    <input type="radio" name="gender" value="1" id="male"><label for="male">男</label>
+    <input type="radio" name="gender" value="2" id="female"><label for="female">女</label> <br>
+    爱好:
+    <input type="checkbox" name="hobby" value="1">旅游
+    <input type="checkbox" name="hobby" value="2">电影
+    <input type="checkbox" name="hobby" value="3">游戏<br>
+    城市：
+    <select name="city" d>
+        <option>北京</option>
+        <option>上海</option>
+        <option>南京</option>
+        <option>广州</option>
+    </select><br>
+    头像:
+    <input type="file"><br>
+    <input type="hidden" name="id" value="123"><br><!--需要隐藏提交的数据-->
+    个人描述：
+    <textarea rows="5" cols="20" name="desc"></textarea><br>
+    <input type="submit" value="付费注册">
+    <input type="reset" value="重置">
+    <input type="button" value="一个按钮">
+</form>
+</body>
+</html>

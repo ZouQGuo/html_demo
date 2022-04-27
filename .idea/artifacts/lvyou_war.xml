@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lvyou:war">
+    <output-path>$PROJECT_DIR$/lvyou/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>lvyou</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="lvyou-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="lvyou:war exploded" />
+    </root>
+  </artifact>
+</component>

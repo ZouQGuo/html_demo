@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="../img/huawei.png" id="myImag" width="20%" height="20%">
+<script>
+    var x = 0;
+    setInterval(function () {
+        if (x%2==0){
+            on();
+        }else {
+            off();
+        }
+        x ++;
+    },1000)
+    function on() {
+        document.getElementById('myImag').src='../img/huawei.png'
+    }
+    function off() {
+        document.getElementById('myImag').src='../img/xiaomi.png'
+    }
+    //我的升级plus版
+    // setInterval(function () {
+    //     on();
+    //     setTimeout(function () {
+    //         off();
+    //     },40)
+    // },80)
+    // function on() {
+    //     document.getElementById('myImag').src='../img/huawei.png'
+    // }
+    // function off() {
+    //     document.getElementById('myImag').src='../img/xiaomi.png'
+    // }
+</script>
+</body>
+</html>
