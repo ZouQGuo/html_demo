@@ -13,7 +13,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/brand-demo/registerServlet" method="post">
+<form action="/brand-demo/Register" method="post">
     <table>
         <tr content="center">
             <th colspan="2">用户注册</th>
@@ -52,13 +52,13 @@
         </tr>
     </table>
 </form>
-<script src="js/axios.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     document.getElementById("changImg").onclick=function () {
-        document.getElementById("checkCodeImg").src="/brand-demo/checkCodeServlet?"+new Date().getMilliseconds();
+        document.getElementById("checkCodeImg").src="/brand-demo/Register?"+new Date().getMilliseconds();
     }
     document.getElementById("checkCodeImg").onclick=function () {
-        document.getElementById("checkCodeImg").src="/brand-demo/checkCodeServlet?"+new Date().getMilliseconds();
+        document.getElementById("checkCodeImg").src="/brand-demo/Register?"+new Date().getMilliseconds();
     }
 
     //1 给用户名输入框绑定失去焦点事件

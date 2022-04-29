@@ -53,7 +53,7 @@
         </tr>
     </table>
 </form>
-<script src="js/axios.js"></script>
+<script src="/js/axios.js"></script>
 <script>
     document.getElementById("changImg").onclick=function () {
         document.getElementById("checkCodeImg").src="/brand-demo/checkCodeServlet?"+new Date().getMilliseconds();
